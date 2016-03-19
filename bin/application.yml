@@ -1,9 +1,9 @@
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/drcode?useUnicode=true&characterEncoding=utf8
-    username: root
-    password: apmsetup
+    url: jdbc:mysql://teamnexters.ck1pcnhtmokh.ap-northeast-2.rds.amazonaws.com:3306/nextershp?useUnicode=true&characterEncoding=utf8
+    username: hp
+    password: hpqw12#$
 
    
   jpa:
