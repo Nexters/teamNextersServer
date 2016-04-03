@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.teamnexters.memory.MemoryEntity;
-import com.teamnexters.product.ProductEntity;
 
 import lombok.Data;
 

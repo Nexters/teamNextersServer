@@ -8,6 +8,11 @@ import lombok.Data;
 @Data
 public class UserInfoValueKey implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private UserEntity user;
 	
 	private UserInfoEntity userInfo;
