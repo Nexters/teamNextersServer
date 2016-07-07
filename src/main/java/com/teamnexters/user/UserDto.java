@@ -11,5 +11,5 @@ public class UserDto {
 	private String password;
 	private int userBirth;
 	private String userAuth;
-	private long img;
+	private String img;
 }

@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -35,8 +36,6 @@ public class UserEntity{
 	@Column(name = "user_no",  unique = true, nullable = false)
 	private String userNo;
 	
-	
-
 	@Column(name = "user_id")
 	private String userId;
 	
@@ -55,17 +54,19 @@ public class UserEntity{
 	private String userAuth;
 	
 	@Column(name = "user_img")
-	private long img;
+	private String img;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user" )
-	private Set<UserInfoValueEntity> userInfoValues = new HashSet<UserInfoValueEntity>(0);
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="user_no")
+	private Set<UserInfoValueEntity> userInfoValues = new HashSet<UserInfoValueEntity>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "activeUser" )
-	private Set<UserActiveEntity> userActives = new HashSet<UserActiveEntity>(0);
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="user_no")
+	private Set<UserActiveEntity> userActives = new HashSet<UserActiveEntity>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "productUser" )
-	private Set<ProductAttendEntity> userProducts = new HashSet<ProductAttendEntity>(0);
-
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="user_no")
+	private Set<ProductAttendEntity> userProducts = new HashSet<ProductAttendEntity>();
 	
 	
 

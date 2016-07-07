@@ -2,6 +2,8 @@ package com.teamnexters.user;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -23,4 +25,21 @@ public class UserService {
 		
 		return user;
 	}
+	
+	public List<UserEntity> getUsersByGener(int gener) {
+		return userRepository.getUsersByGener(gener);
+	}
+	
+	public List<UserEntity> getUsers() {
+		return userRepository.findAll();
+	}
+	
+	public List<Integer> getGenerations() {
+		return userRepository.getGeneragtions();
+	}
+	
+	public UserEntity getUserById(String id) {
+		return userRepository.findOne(id);
+	}
+	
 }

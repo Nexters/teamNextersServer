@@ -3,7 +3,6 @@ package com.teamnexters.productattend;
 import java.io.Serializable;
 
 import com.teamnexters.product.ProductEntity;
-import com.teamnexters.user.UserEntity;
 
 import lombok.Data;
 
@@ -15,7 +14,7 @@ public class ProductAttendKey implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ProductEntity productAttend;
+	private int prodId;
 	
-	private UserEntity productUser;
+	private String userNo;
 }

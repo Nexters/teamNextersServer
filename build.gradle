@@ -10,6 +10,15 @@ version '1.0'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
+sourceSets {
+    generated {
+        java {
+            srcDirs = ['src/main/generated']
+        }
+    }
+}
+
+
 buildscript {
 	ext {
 		springBootVersion = '1.3.2.RELEASE'
@@ -38,6 +47,7 @@ jar {
 	version = '0.0.1-SNAPSHOT'
 }
 
+
 dependencies {
 	// mockito
 	testCompile 'org.mockito:mockito-all:1.10.19'
@@ -47,7 +57,10 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-jdbc'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 	compile 'org.hibernate:hibernate-validator:5.2.1.Final'
-
+	
+	//mail
+	compile 'org.springframework.boot:spring-boot-starter-mail'
+	
 	// db
 	compile 'mysql:mysql-connector-java:5.1.6'
 	compile 'commons-dbcp:commons-dbcp:1.2.2'
@@ -76,10 +89,6 @@ dependencies {
 	compile("io.springfox:springfox-swagger2:2.2.2")
     compile("io.springfox:springfox-swagger-ui:2.2.2")
 	
-	
-	
-	
-	
     runtime('com.h2database:h2')
     
     
@@ -87,6 +96,36 @@ dependencies {
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
+task generateQueryDSL(type: JavaCompile, group: 'build') {
+     source = sourceSets.main.java
+     classpath = configurations.compile
+     options.compilerArgs = [
+          "-proc:only",
+          "-processor", "com.mysema.query.apt.jpa.JPAAnnotationProcessor"
+     ]
+     destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
+}
+
+compileJava {
+     dependsOn generateQueryDSL
+     source generateQueryDSL.destinationDir
+}
+
+compileGeneratedJava {
+     dependsOn generateQueryDSL
+     options.warnings = false
+     classpath += sourceSets.main.runtimeClasspath
+}
+
+clean {
+    delete sourceSets.generated.java.srcDirs
+}
+
+idea {
+    module {
+        sourceDirs += file('src/main/generated')
+    }
+}
 
 eclipse {
 	classpath {

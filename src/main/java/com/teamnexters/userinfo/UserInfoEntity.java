@@ -30,8 +30,4 @@ public class UserInfoEntity {
 	
 	@Column(name = "info_name")
 	private String infoName;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo" )
-	private Set<UserInfoValueEntity> userInfoValues = new HashSet<UserInfoValueEntity>(0);
-	
 }
