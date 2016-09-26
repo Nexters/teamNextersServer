@@ -30,6 +30,9 @@ public class UserInfoValueEntity {
 	
 	@Column(name = "info_value")
 	private String infoValue;
+	
+	@Column(name = "info_open_yn")
+	private String infoOpenYn;
 
 	
 	

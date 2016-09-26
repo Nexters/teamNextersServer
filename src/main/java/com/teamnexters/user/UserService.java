@@ -31,7 +31,7 @@ public class UserService {
 	}
 	
 	public List<UserEntity> getUsers() {
-		return userRepository.findAll();
+		return userRepository.getAllUserList();
 	}
 	
 	public List<Integer> getGenerations() {
